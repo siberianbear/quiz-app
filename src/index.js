@@ -11,7 +11,7 @@ ReactDOM.render(
   <MiniApp
     join={View}
     data={{}}
-    devt={false}
+    devt={true}
   />,
   document.getElementById('root')
 );
