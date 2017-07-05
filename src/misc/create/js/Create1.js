@@ -1,7 +1,11 @@
 // @flow
 import React, { Component } from 'react';
-import { defaultUIBridge } from 'aq-miniapp';
-import { StaticCanvas, Button, Panel } from 'aq-miniapp-components-ui';
+import {
+  StaticCanvas,
+  Panel,
+  Button,
+  defaultUIBridge
+} from 'aq-miniapp';
 import '../css/Create1.css';
 
 const ITEM_WIDTH_PERCENTAGE = 0.65;
@@ -63,7 +67,18 @@ export default class Create1 extends Component {
         );
         break;
       case Buttons.ITEM:
-        defaultUIBridge.showGalleryImageSelector('item', 'Select an item to pass', this._onRequestItemImage.bind(this));        
+        defaultUIBridge.showGalleryImageSelector('item', 'Select an item to pass', this._onRequestItemImage.bind(this));
+        // defaultUIBridge.showWebImageSelector(
+        //   'item',
+        //   'Select a background template',
+        //   [
+        //     'https://images3.pixlis.com/background-image-stripes-and-lines-seamless-tileable-232nm5.png',
+        //     'https://images3.pixlis.com/background-image-dual-two-line-striped-seamless-tileable-beaver-victoria-234s89.png',
+        //     'https://images1.pixlis.com/background-image-stripes-and-lines-seamless-tileable-232h4x.png',
+        //     'https://images2.pixlis.com/background-image-dual-two-line-striped-seamless-tileable-234g7q.png'
+        //   ],
+        //   this._onRequestItemImage.bind(this)
+        // );
         break;
       case Buttons.COVER:
         defaultUIBridge.showGalleryImageSelector('cover', 'Select a cover photo', this._onRequestCoverImage.bind(this));
@@ -120,33 +135,33 @@ export default class Create1 extends Component {
 
     if (this.state.selectedIndex !== Buttons.COVER){
       if (this.state.backgroundImg != null){
-        background = <img src={this.state.backgroundImg} className='background' alt='background'/>
+        background = <img src={this.state.backgroundImg} className='create-background' alt='background'/>
       }
       else {
         background = <StaticCanvas width={width} height={height}/>;
       }
       if (this.state.itemImg != null){
-        itemImage = <img src={this.state.itemImg} className='itemz' width={width * ITEM_WIDTH_PERCENTAGE} height={width * ITEM_WIDTH_PERCENTAGE} alt='item'/>;
+        itemImage = <img src={this.state.itemImg} className='create-item' width={width * ITEM_WIDTH_PERCENTAGE} height={width * ITEM_WIDTH_PERCENTAGE} alt='item'/>;
       }
     }
     else {
       if (this.state.coverImg == null){
         if (this.state.backgroundImg != null){
-          background = <img src={this.state.backgroundImg} className='background' alt='background'/>
+          background = <img src={this.state.backgroundImg} className='create-background' alt='background'/>
         }
         else {
           background = <StaticCanvas width={width} height={height}/>;
         }
         if (this.state.itemImg != null){
-          itemImage = <img src={this.state.itemImg} className='itemz' width={width * ITEM_WIDTH_PERCENTAGE} height={width * ITEM_WIDTH_PERCENTAGE} alt='item'/>;
+          itemImage = <img src={this.state.itemImg} className='create-item' width={width * ITEM_WIDTH_PERCENTAGE} height={width * ITEM_WIDTH_PERCENTAGE} alt='item'/>;
         }
       }
       else {
-        cover = <img src={this.state.coverImg} className='background' alt='background'/>
+        cover = <img src={this.state.coverImg} className='create-background' alt='background'/>
       }
     }
     return (
-      <div className='container'>
+      <div className='create-container'>
         {background}
         {cover}
         {itemImage}
