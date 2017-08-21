@@ -8,6 +8,6 @@ export type Output = {
 }
 */
 export type Output = {
-  problemNo: Number,
+  answerNum: Number,
   selected: String
 }

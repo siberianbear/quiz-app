@@ -29,45 +29,47 @@ export class View3 extends Component {
 
     this.state = {
       result: "",
-      color: ""
+      statusCSS: "",
     }
     this.won = false;
-    this.currAnswer = quizzes[props.output.problemNo];
+    this.currAnswer = quizzes[props.output.answerNum];
+    this.userChoice = quizzes[props.output.selected.answer];
     this.setResult = this.setResult.bind(this);
 
   }
 
   componentDidMount(){
     this.setResult();
-    console.log(this.currAnswer.img + " ze image");
-    // console.log(props.output);
-    // console.log(this.props.problemNo);
-    // console.log(quizzes[1].answer);
-    // console.log(quizzes[props.output.problemNo].answer);
+    // console.log(this.currAnswer.img);
+    console.log(this.userChoice);
   }
 
   setResult(){
     let answer = this.currAnswer.choices[this.currAnswer.answer];
-    console.log(this.currAnswer.answer, this.currAnswer.choices);
-    console.log(answer, "====", this.props.output.selected)
+    // console.log(this.currAnswer.answer, this.currAnswer.choices);
+    console.log(answer, "====", this.props.output.selected + " ?")
     if (answer === this.props.output.selected) {
       this.won = true;
-      this.setState({result: "You did it!", color: "green"})
+      this.setState({result: "You did it!", statusCSS: "titleResultCorrect"})
     } else {
-      this.setState({result: "You lose", color: "red"})
+      this.setState({result: "You lose", statusCSS: "titleResultIncorrect"})
     }
   }
 
   render() {
     return (
       <div className="viewContainer justifyCenter">
-        {/* <div className="titleResultCorrect">You did it!</div> */}
-        <div className="result" style={{color: this.state.color}}>{this.state.result}</div>
+        {/* <div className="result" style={{color: this.state.color}}>{this.state.result}</div> */}
+        <div className={this.state.statusCSS}>{this.state.result}</div>
+
+        <div className="resultChoice">{this.userChoice}</div>
+
         <div className="quizImg">
           <img src={this.currAnswer.img} alt="quiz_picture" />
         </div>
-        {/* <div className="title">Done</div> */}
-        <Button title="Restart" onClick={this.props.onClick} className="quizBttn"/>
+
+        <Button title="Next" onClick={this.props.onClick} className="quizBttn"/>
+        <p id="resultInstruction">TAP NEXT BUTTON</p>
       </div>
     )
   }

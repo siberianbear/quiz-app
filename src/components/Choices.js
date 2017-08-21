@@ -6,13 +6,12 @@ import './Choices.css';
 function ListItem(props) {
 
   function mouseUp(event){
-    console.log(props.index, props.value);
+    console.log("index is: " + props.index, "value is: " + props.value);
     props.onSelected(props.value);
   }
 
   // Correct! There is no need to specify the key here:
   return <div className="choice-item" onMouseUp={(event) => mouseUp(event)}>
-    {/* <span className="abc">{letters[props.index]}. </span> */}
     {props.value}</div>;
 }
 
