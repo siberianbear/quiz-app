@@ -1,4 +1,20 @@
-.title {
+/*.title {
   font-size: 24pt;
   text-transform: uppercase;
+}*/
+
+.titleResultCorrect, .titleResultIncorrect {
+  font-family: HelveticaNeueLTStd-Th, 'Oswald', sans-serif;
+  font-size: 2.2rem;
+  text-align: center;
+  text-shadow: 1px 1px 4px #000;
+}
+
+.titleResultCorrect {
+  color: #15E13D;
+
+}
+
+.titleResultIncorrect {
+  color: red;
 }

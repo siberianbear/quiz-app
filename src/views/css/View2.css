@@ -1,0 +1,10 @@
+.quizImg img {
+  width: 280px;
+  height: auto;
+}
+
+.titleGuess {
+  font-family: HelveticaNeueLTStd-Th, 'Oswald', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}

@@ -1,0 +1,28 @@
+﻿
+.choice-item {
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0 3px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.choice-item:hover {
+  /*background-color: deeppink;*/
+}
+
+.choice-item:nth-child(2) {
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  margin: 0;
+}
+
+.choiceContainer {
+  background-color: #194061;
+  border: 1px solid #fff;
+  font-size: 1.5rem;
+  border-radius: 2rem;
+  padi: 0 10px;
+  /*width: 90%;*/
+}

@@ -79,6 +79,7 @@ export default class View extends Component {
           break;
         case 3:
           render = <View3 output={this.state.output} onClick={this._onView3Click.bind(this)}/>
+          // render = <View3 onClick={this._onView3Click.bind(this)}/>
           break;
         default:
           break;

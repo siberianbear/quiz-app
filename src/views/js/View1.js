@@ -10,13 +10,13 @@ import asset from '../../assets/asset.png';
 */
 
 // Import CSS here
-import '../css/View.css';
+import '../css/View1.css';
 
 export class View1 extends Component {
   render() {
     return (
       <div className="viewContainer justifySpaceAround">
-        <Button title="Start" onClick={this.props.onClick}/>
+        <Button title="Start" onClick={this.props.onClick} className="quizBttn"/>
       </div>
     )
   }
