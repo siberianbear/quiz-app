@@ -22,7 +22,7 @@ export var Timer = createReactClass({
 
     tick: function(){
         var count = this.state.elapsed-10; // 100
-        if (count <= 0) {
+        if (count < 0) {
           clearInterval(this.timer);
           console.log("timer finished!");
         }

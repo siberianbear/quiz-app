@@ -43,7 +43,7 @@ export class View2 extends Component {
   }
 
   onSelected(selectedChoice){
-    this.props.onClick({answerNum: this.state.diceDrop, selected: selectedChoice})
+    this.props.onClick({theQuiz: this.state.diceDrop, selected: selectedChoice})
   }
 
   render() {

@@ -8,6 +8,6 @@ export type Output = {
 }
 */
 export type Output = {
-  answerNum: Number,
+  theQuiz: Number,
   selected: String
 }

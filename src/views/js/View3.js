@@ -23,6 +23,7 @@ export class View3 extends Component {
 
   won = false;
   currAnswer = null;
+  userChoice = null;
 
   constructor(props: Props){
     super(props);
@@ -32,22 +33,22 @@ export class View3 extends Component {
       statusCSS: "",
     }
     this.won = false;
-    this.currAnswer = quizzes[props.output.answerNum];
-    this.userChoice = quizzes[props.output.selected.answer];
+    this.userChoice = null;
+    this.currAnswer = quizzes[props.output.theQuiz];
     this.setResult = this.setResult.bind(this);
-
   }
 
   componentDidMount(){
     this.setResult();
     // console.log(this.currAnswer.img);
-    console.log(this.userChoice);
+    // console.log(this.userChoice);
   }
 
   setResult(){
     let answer = this.currAnswer.choices[this.currAnswer.answer];
     // console.log(this.currAnswer.answer, this.currAnswer.choices);
-    console.log(answer, "====", this.props.output.selected + " ?")
+    console.log(answer, "====", this.props.output.selected + " ?");
+    this.userChoice = this.props.output.selected;
     if (answer === this.props.output.selected) {
       this.won = true;
       this.setState({result: "You did it!", statusCSS: "titleResultCorrect"})
