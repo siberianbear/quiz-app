@@ -5,6 +5,9 @@ import type { Output } from '../Types';
 import { Button } from 'aq-miniapp';
 import { quizzes } from '../../components/QuizList';
 
+import soundWin from '../../assets/sounds/win.mp3';
+import soundLose from '../../assets/sounds/lose.mp3';
+
 /* Import Assets as required by specs document
 ex.
 import asset from '../../assets/asset.png';
@@ -36,12 +39,33 @@ export class View3 extends Component {
     this.userChoice = null;
     this.currAnswer = quizzes[props.output.theQuiz];
     this.setResult = this.setResult.bind(this);
+
+    this.onPlay = this.onPlay.bind(this);
+    this.soundWin = new Audio(soundWin);
+    this.soundLose = new Audio(soundLose);
   }
 
   componentDidMount(){
     this.setResult();
     // console.log(this.currAnswer.img);
     // console.log(this.userChoice);
+  }
+
+  componentWillUnmount(){
+    this.onPlay();
+  }
+
+  onPlay(arg){
+    if (arg === "win") {
+      this.soundWin.play();
+    }
+    else if (arg === "lose") {
+      this.soundLose.play();
+    }
+    else {
+      this.soundWin.pause();
+      this.soundLose.pause();
+    }
   }
 
   setResult(){
@@ -51,9 +75,11 @@ export class View3 extends Component {
     this.userChoice = this.props.output.selected;
     if (answer === this.props.output.selected) {
       this.won = true;
-      this.setState({result: "You did it!", statusCSS: "titleResultCorrect"})
+      this.setState({result: "You did it!", statusCSS: "titleResultCorrect"});
+      this.onPlay("win");
     } else {
-      this.setState({result: "You lose", statusCSS: "titleResultIncorrect"})
+      this.setState({result: "You lose", statusCSS: "titleResultIncorrect"});
+      this.onPlay("lose");
     }
   }
 

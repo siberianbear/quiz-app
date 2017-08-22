@@ -9,6 +9,8 @@ import {Choices} from '../../components/Choices';
 import {quizzes} from '../../components/QuizList';
 import {Timer} from '../../components/Timer';
 
+import soundClockTick from '../../assets/sounds/clock_tick.mp3';
+
 //Import relevant components as required by specs document here
 // import { Button } from 'aq-miniapp';
 
@@ -40,9 +42,30 @@ export class View2 extends Component {
 
     this.onSelected = this.onSelected.bind(this);
 
+    this.onPlay = this.onPlay.bind(this);
+    this.sound = new Audio(soundClockTick);
+
+  }
+
+  componentDidMount(){
+    this.onPlay("play");
+    this.sound.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+  }
+
+  onPlay(arg){
+    if (arg === "play") {
+      this.sound.play();
+    }
+    else {
+      this.sound.pause();
+    }
   }
 
   onSelected(selectedChoice){
+    this.onPlay("stop");
     this.props.onClick({theQuiz: this.state.diceDrop, selected: selectedChoice})
   }
 
@@ -57,8 +80,8 @@ export class View2 extends Component {
         <div className="choiceContainer">
           <Choices choice={quizzes[this.state.diceDrop]} onSelected={this.onSelected} />
         </div>
-        <Timer start={60}/>
-
+        {/* set time in seconds */}
+        <Timer start={5}/>
       </div>
     )
   }

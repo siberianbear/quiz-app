@@ -9,7 +9,7 @@ var createReactClass = require('create-react-class');
 export var Timer = createReactClass({
 
     getInitialState: function(){
-        return { elapsed: 60000 };
+        return { elapsed: this.props.start*1000 };
     },
 
     componentDidMount: function(){
