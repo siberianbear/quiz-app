@@ -16,7 +16,6 @@ import asset from '../../assets/asset.png';
 // Import CSS here
 import '../css/View3.css';
 
-
 type Props = {
   output: Output
 }
@@ -34,7 +33,9 @@ export class View3 extends Component {
     this.state = {
       result: "",
       statusCSS: "",
+      scoreCSS: ""
     }
+    
     this.won = false;
     this.userChoice = null;
     this.currAnswer = quizzes[props.output.theQuiz];
@@ -47,8 +48,6 @@ export class View3 extends Component {
 
   componentDidMount(){
     this.setResult();
-    // console.log(this.currAnswer.img);
-    // console.log(this.userChoice);
   }
 
   componentWillUnmount(){
@@ -73,12 +72,16 @@ export class View3 extends Component {
     // console.log(this.currAnswer.answer, this.currAnswer.choices);
     console.log(answer, "====", this.props.output.selected + " ?");
     this.userChoice = this.props.output.selected;
-    if (answer === this.props.output.selected) {
+    if (!this.props.output.selected) {
+      this.setState({result: "Time's up!", statusCSS: "titleResultIncorrect", scoreCSS: "resultChoiceNone"});
+      this.onPlay("lose");
+    }
+    else if (answer === this.props.output.selected) {
       this.won = true;
-      this.setState({result: "You did it!", statusCSS: "titleResultCorrect"});
+      this.setState({result: "You did it!", statusCSS: "titleResultCorrect", scoreCSS: "resultChoice"});
       this.onPlay("win");
     } else {
-      this.setState({result: "You lose", statusCSS: "titleResultIncorrect"});
+      this.setState({result: "You lose!", statusCSS: "titleResultIncorrect", scoreCSS: "resultChoice"});
       this.onPlay("lose");
     }
   }
@@ -86,10 +89,9 @@ export class View3 extends Component {
   render() {
     return (
       <div className="viewContainer justifyCenter">
-        {/* <div className="result" style={{color: this.state.color}}>{this.state.result}</div> */}
-        <div className={this.state.statusCSS}>{this.state.result}</div>
+        <div id={this.state.statusCSS}>{this.state.result}</div>
 
-        <div className="resultChoice">{this.userChoice}</div>
+        <div id={this.state.scoreCSS}>{this.userChoice}</div>
 
         <div className="quizImg">
           <img src={this.currAnswer.img} alt="quiz_picture" />

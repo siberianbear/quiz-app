@@ -1,22 +1,23 @@
-.titleResultCorrect, .titleResultIncorrect, #resultInstruction {
+#titleResultCorrect, #titleResultIncorrect, #resultInstruction {
   font-family: HelveticaNeueLTStd-Th, 'Oswald', sans-serif;
   text-align: center;
   text-shadow: 1px 1px 4px #000;
 }
 
-.titleResultCorrect, .titleResultIncorrect {
+#titleResultCorrect, #titleResultIncorrect {
   font-size: 3rem;
+  margin-bottom: 15px;
 }
 
-.titleResultCorrect {
+#titleResultCorrect {
   color: #15E13D;
 }
 
-.titleResultIncorrect {
+#titleResultIncorrect {
   color: red;
 }
 
-.resultChoice {
+#resultChoice {
   font-family: HelveticaNeueLT-BlackCond, 'Oswald', sans-serif;
   font-size: 2rem;
   color: #00fffe;
@@ -30,4 +31,8 @@
 #resultInstruction {
   color: white;
   font-size: 1.3em;
+}
+
+#resultChoiceNone {
+  display: none;
 }

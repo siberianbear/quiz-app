@@ -3,13 +3,10 @@ import React, { Component } from 'react';
 import type { Output } from '../Types';
 
 // Import component to be developed as required by specs document here
-// import Comp from '../../components/Comp';
-// import {TapButton} from '../../components/TapButton';
 import {Choices} from '../../components/Choices';
 import {quizzes} from '../../components/QuizList';
 import {Timer} from '../../components/Timer';
-
-import soundClockTick from '../../assets/sounds/clock_tick.mp3';
+// import soundClockTick from '../../assets/sounds/clock_tick.mp3';
 
 //Import relevant components as required by specs document here
 // import { Button } from 'aq-miniapp';
@@ -17,10 +14,7 @@ import soundClockTick from '../../assets/sounds/clock_tick.mp3';
 // Import CSS here
 import '../css/View2.css';
 
-/* Define constants here
-ex.
-const MY_CONSTANT = 42;
-*/
+const setTime = 5; // time for timer in seconds
 
 export type Props = {
   onClick: (Output) => void
@@ -37,35 +31,20 @@ export class View2 extends Component {
 
     this.state = {
       output: {},
-      diceDrop: Math.floor(Math.random() * quizzes.length)
+      diceDrop: Math.floor(Math.random() * quizzes.length),
+      timeOut: false
     }
 
     this.onSelected = this.onSelected.bind(this);
-
-    this.onPlay = this.onPlay.bind(this);
-    this.sound = new Audio(soundClockTick);
-
   }
 
-  componentDidMount(){
-    this.onPlay("play");
-    this.sound.addEventListener('ended', function() {
-      this.currentTime = 0;
-      this.play();
-    }, false);
-  }
-
-  onPlay(arg){
-    if (arg === "play") {
-      this.sound.play();
-    }
-    else {
-      this.sound.pause();
-    }
+  onChildChanged(newState) {
+    // console.log("timeout happens");
+    // this.setState({timeOut: true});
+    this.props.onClick({theQuiz: this.state.diceDrop, selected: null})
   }
 
   onSelected(selectedChoice){
-    this.onPlay("stop");
     this.props.onClick({theQuiz: this.state.diceDrop, selected: selectedChoice})
   }
 
@@ -80,8 +59,7 @@ export class View2 extends Component {
         <div className="choiceContainer">
           <Choices choice={quizzes[this.state.diceDrop]} onSelected={this.onSelected} />
         </div>
-        {/* set time in seconds */}
-        <Timer start={5}/>
+        <Timer start={setTime} callbackParent={(newState) => this.onChildChanged(newState) }/>
       </div>
     )
   }

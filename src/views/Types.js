@@ -9,5 +9,6 @@ export type Output = {
 */
 export type Output = {
   theQuiz: Number,
-  selected: String
+  selected: String,
+  timeOut: boolean
 }
